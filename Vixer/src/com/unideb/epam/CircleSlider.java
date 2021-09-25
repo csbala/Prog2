@@ -84,15 +84,9 @@ public class CircleSlider extends Rectangle{
         }
     }
 
-    public void setProgress1(int progress1) {
-        this.progress1 = progress1;
-    }
-    public void setProgress2(int progress2) {
-        this.progress2 = progress2;
-    }
-    public void setProgress3(int progress3) {
-        this.progress3 = progress3;
-    }
+    public void setProgress1(int progress1) {this.progress1 = progress1; progress1_slide_value = progress1*79/100;}
+    public void setProgress2(int progress2) {this.progress2 = progress2; progress2_slide_value = progress2*79/100;}
+    public void setProgress3(int progress3) {this.progress3 = progress3; progress3_slide_value = progress3*79/100;}
     public int getProgress1() {
         return progress1;
     }

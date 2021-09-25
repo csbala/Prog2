@@ -22,7 +22,6 @@ public class Label extends Rectangle {
     public void setColor(Color color) {
         this.color = color;
     }
-
     public Color getColor() {
         return color;
     }

@@ -25,10 +25,9 @@ public class MainPanel extends JPanel implements Runnable{
     Label characterLabel;
     Line line1;//left line
     Line line2;//right line
-    List mainList;
-    List characterList;
-    List effectList;
-    List environmentList;
+    MainList mainList;
+
+
 
 
 
@@ -41,6 +40,7 @@ public class MainPanel extends JPanel implements Runnable{
         this.setPreferredSize(SCREEN_SIZE);
         this.addMouseListener(new AL());
         this.addMouseMotionListener(new AL());
+
 
         mainThread = new Thread(this);
         mainThread.start();
@@ -69,6 +69,7 @@ public class MainPanel extends JPanel implements Runnable{
         circleSlider1 = new CircleSlider(BETWEEN_SLIDERS, MAIN_HEIGHT - SLIDER_HEIGHT - BETWEEN_SLIDERS, SLIDER_WIDTH, SLIDER_HEIGHT,1,255);
         circleSlider2 = new CircleSlider(2*BETWEEN_SLIDERS+SLIDER_WIDTH,MAIN_HEIGHT - SLIDER_HEIGHT - BETWEEN_SLIDERS,SLIDER_WIDTH, SLIDER_HEIGHT,2,255);
         circleSlider3 = new CircleSlider(3*BETWEEN_SLIDERS+2*SLIDER_WIDTH,MAIN_HEIGHT - SLIDER_HEIGHT - BETWEEN_SLIDERS,SLIDER_WIDTH, SLIDER_HEIGHT,3,255);
+
     }
 
     public void newLabel(){
@@ -86,14 +87,15 @@ public class MainPanel extends JPanel implements Runnable{
     }
 
     public void newList() {
-        mainList = new List(MAIN_WIDTH/2-(int)(SLIDER_WIDTH*1.4)/2,(effectLabel.y+topLabel.y+topLabel.font_size)/2-40,(int)(SLIDER_WIDTH*1.4),40,"MainList");
-        characterList = new List(circleSlider1.x,(circleSlider1.y+(characterLabel.y+characterLabel.font_size))/2-30,circleSlider1.width,30,"Character");
-        effectList = new List(circleSlider2.x,characterList.y,circleSlider2.width,30,"Effect");
-        environmentList = new List(circleSlider3.x,characterList.y,circleSlider3.width,30,"Environment");
+        mainList = new MainList(MAIN_WIDTH / 2 - (int) (SLIDER_WIDTH * 1.4) / 2, (effectLabel.y + topLabel.y + topLabel.font_size) / 2 - 40, (int) (SLIDER_WIDTH * 1.4), 40, "MAINLIST");
+       // characterList = new List(circleSlider1.x, (circleSlider1.y + (characterLabel.y + characterLabel.font_size)) / 2 - 30, circleSlider1.width, 30, "Character");
+       // effectList = new List(circleSlider2.x, characterList.y, circleSlider2.width, 30, "Effect");
+       // environmentList = new List(circleSlider3.x, characterList.y, circleSlider3.width, 30, "Environment");
+
     }
 
 
-        public void paint(Graphics g){
+    public void paint(Graphics g){
         image = createImage(getWidth(),getHeight());
         graphics = image.getGraphics();
         draw(graphics);
@@ -112,16 +114,14 @@ public class MainPanel extends JPanel implements Runnable{
         line1.draw(g);
         line2.draw(g);
         mainList.draw(g);
-        characterList.draw(g);
-        effectList.draw(g);
-        environmentList.draw(g);
+
+
+
     }
 
     public class AL extends MouseAdapter implements MouseMotionListener {
 
-        public void mouseEntered(MouseEvent mouseEvent){
-
-        }
+        public void mouseEntered(MouseEvent mouseEvent){}
 
         public void mousePressed(MouseEvent mouseEvent){
 
@@ -129,9 +129,10 @@ public class MainPanel extends JPanel implements Runnable{
             circleSlider2.mousePressed(mouseEvent);
             circleSlider3.mousePressed(mouseEvent);
             mainList.mousePressed(mouseEvent);
-            characterList.mousePressed(mouseEvent);
-            effectList.mousePressed(mouseEvent);
-            environmentList.mousePressed(mouseEvent);
+            if(mainList.list_pressed){
+                setCurrentVoice();
+            }
+
 
         }
 
@@ -142,10 +143,21 @@ public class MainPanel extends JPanel implements Runnable{
             circleSlider1.mouseDragged(mouseEvent);
             circleSlider2.mouseDragged(mouseEvent);
             circleSlider3.mouseDragged(mouseEvent);
+
         }
 
         public void mouseMoved(MouseEvent mouseEvent){}
 
     }
+
+
+public void setCurrentVoice(){
+    circleSlider1.setProgress1(mainList.current_voice.progressbar1);
+    circleSlider2.setProgress2(mainList.current_voice.progressbar2);
+    circleSlider3.setProgress3(mainList.current_voice.progressbar3);
+    mainList.list_pressed = false;
+    mainList.s = mainList.current_voice.name;
+}
+
 
 }
