@@ -7,14 +7,15 @@ import java.awt.geom.Arc2D;
 public class CircleSlider extends Rectangle{
 
     int id;
-    int progress1 = 50;
-    int progress1_slide_value = progress1*79/100;
-    int progress2 = 50;
-    int progress2_slide_value = progress2*79/100;
-    int progress3 = 50;
-    int progress3_slide_value = progress3*79/100;
+    public int progress1 = 50;
+    public int progress1_slide_value = progress1*79/100;
+    public int progress2 = 50;
+    public int progress2_slide_value = progress2*79/100;
+    public int progress3 = 50;
+    public int progress3_slide_value = progress3*79/100;
     double e = width*0.04;
-    int opacity;
+    int opacity = 255;
+    Boolean scroll = false;
 
 
     CircleSlider(int x, int y, int slider_width, int slider_height, int id, int opacity){
@@ -29,9 +30,10 @@ public class CircleSlider extends Rectangle{
     public void mousePressed(MouseEvent e){ firstY = e.getY();  secondY = e.getY();}
 
     public void mouseDragged(MouseEvent e) {
+
         switch (id){
             case 1:
-                if(this.contains(new Point(e.getX(),e.getY()))){
+                if(scroll){
                     firstY = e.getY();
                     if(firstY > secondY){
                         progress1--;
@@ -47,7 +49,7 @@ public class CircleSlider extends Rectangle{
                 }
                 break;
             case 2:
-                if(this.contains(new Point(e.getX(),e.getY()))){
+                if(scroll){
                     firstY = e.getY();
                     if(firstY > secondY){
                         progress2--;
@@ -64,7 +66,7 @@ public class CircleSlider extends Rectangle{
                 }
                 break;
             case 3:
-                if(this.contains(new Point(e.getX(),e.getY()))){
+                if(scroll){
                     firstY = e.getY();
                     if(firstY > secondY){
                         progress3--;
@@ -87,16 +89,6 @@ public class CircleSlider extends Rectangle{
     public void setProgress1(int progress1) {this.progress1 = progress1; progress1_slide_value = progress1*79/100;}
     public void setProgress2(int progress2) {this.progress2 = progress2; progress2_slide_value = progress2*79/100;}
     public void setProgress3(int progress3) {this.progress3 = progress3; progress3_slide_value = progress3*79/100;}
-    public int getProgress1() {
-        return progress1;
-    }
-    public int getProgress2() {
-        return progress2;
-    }
-    public int getProgress3() {
-        return progress3;
-    }
-    public void setOpacity(int opacity){this.opacity = opacity;}
 
 
     public void draw(Graphics g){

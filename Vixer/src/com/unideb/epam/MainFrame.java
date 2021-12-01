@@ -1,9 +1,7 @@
 package com.unideb.epam;
 
-import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.*;
 import javax.sound.sampled.Line;
-import javax.sound.sampled.Mixer;
-import javax.sound.sampled.TargetDataLine;
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +10,7 @@ public class MainFrame extends JFrame {
 
     MainPanel panel;
 
-    MainFrame(){
+    MainFrame() throws LineUnavailableException {
         panel = new MainPanel();
         this.add(panel);
         this.setTitle(getTitle());

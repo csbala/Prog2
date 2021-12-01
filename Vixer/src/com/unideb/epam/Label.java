@@ -31,6 +31,7 @@ public class Label extends Rectangle {
         FontMetrics metrics = g.getFontMetrics(font);//this allows me draw the string at the middle
         g.setColor(getColor());
         g.setFont(font);
+
         g.drawString(s,x-metrics.stringWidth(s)/2,y);
     }
 
