@@ -24,8 +24,8 @@ public class Microphone {
 
     }
 
-    public void setAudioFormat(AudioFormat.Encoding encoding, int sampleRate, int sampleSizeInBits,int channels,int frameSize,int frameRate, boolean bigEndian){
-        format = new AudioFormat(encoding,sampleRate,sampleSizeInBits,channels,frameSize,frameRate,bigEndian);
+    public void setAudioFormat( int sampleRate){
+        format = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED,sampleRate,16,2,4,44100,false);
         Setinfo();
     }
 
