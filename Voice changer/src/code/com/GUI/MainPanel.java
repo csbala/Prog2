@@ -4,7 +4,6 @@ import code.com.Audio.Microphone;
 import code.com.GUI.Presets.*;
 
 
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import java.awt.*;
@@ -105,7 +104,6 @@ public class MainPanel extends JPanel implements Runnable {
         }
     }
 
-    private Boolean echo=false;
     private Boolean pitch =false;
     private Boolean distortion=false;
 
@@ -161,25 +159,25 @@ public class MainPanel extends JPanel implements Runnable {
         public void mousePressed(MouseEvent mouseEvent){
             repaint();
             manButton.mousePressed(mouseEvent);
-            if(manButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,53100,16,2,4,44100,false);pitch=true;distortion=false;}
+            if(manButton.pressed){microphone.setAudioFormat(53100);pitch=true;distortion=false;}
             womanButton.mousePressed(mouseEvent);
-            if(womanButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,39100,16,2,4,44100,false);pitch=true;distortion=false;}
+            if(womanButton.pressed){microphone.setAudioFormat(39100);pitch=true;distortion=false;}
             boyButton.mousePressed(mouseEvent);
-            if(boyButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,42100,16,2,4,44100,false);pitch=true;distortion=false;}
+            if(boyButton.pressed){microphone.setAudioFormat(42100);pitch=true;distortion=false;}
             girlButton.mousePressed(mouseEvent);
-            if(girlButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,37100,16,2,4,44100,false);pitch=true;distortion=false;}
+            if(girlButton.pressed){microphone.setAudioFormat(37100);pitch=true;distortion=false;}
             dartWaderButton.mousePressed(mouseEvent);
-            if(dartWaderButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,64100,16,2,4,44100,false);pitch=true;distortion=true;}
+            if(dartWaderButton.pressed){microphone.setAudioFormat(64100);pitch=true;distortion=true;}
             chipmunkButton.mousePressed(mouseEvent);
-            if(chipmunkButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,30100,16,2,4,44100,false);pitch=true;distortion=false;}
+            if(chipmunkButton.pressed){microphone.setAudioFormat(30100);pitch=true;distortion=false;}
             russianMicButton.mousePressed(mouseEvent);
-            if(russianMicButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,49100,16,2,4,44100,false);pitch=true;distortion=true;}
+            if(russianMicButton.pressed){microphone.setAudioFormat(49100);pitch=true;distortion=true;}
             radioButton.mousePressed(mouseEvent);
-            if(radioButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,40000,16,2,4,44100,false);pitch=true;distortion=true;}
+            if(radioButton.pressed){microphone.setAudioFormat(40000);pitch=true;distortion=true;}
             monsterButton.mousePressed(mouseEvent);
-            if(monsterButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,74100,16,2,4,44100,false);pitch=true;distortion=true;}
+            if(monsterButton.pressed){microphone.setAudioFormat(74100);pitch=true;distortion=true;}
             defaultsButton.mousePressed(mouseEvent);
-            if(defaultsButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,44100,16,2,4,44100,false);pitch=true;distortion=false;}
+            if(defaultsButton.pressed){microphone.setAudioFormat(44100);pitch=true;distortion=false;}
             circleSlider.mousePressed(mouseEvent);
 
             customButton.mousePressed(mouseEvent);
@@ -187,7 +185,7 @@ public class MainPanel extends JPanel implements Runnable {
 
               int SampleRate= (44100+(circleSlider.progress-50)*400);
 
-                microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,SampleRate,16,2,4,44100,false);pitch=true;distortion=false;
+                microphone.setAudioFormat(SampleRate);pitch=true;distortion=false;
             }
 
         }
