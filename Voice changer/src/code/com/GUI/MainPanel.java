@@ -19,7 +19,7 @@ public class MainPanel extends JPanel implements Runnable {
     static final int MAIN_HEIGHT = (int)(MY_SCREEN_SIZE.getHeight() - MY_SCREEN_SIZE.getHeight() * 0.3);
     static final Dimension SCREEN_SIZE = new Dimension(MAIN_WIDTH,MAIN_HEIGHT);
     RussianMic russianMicButton;
-    Megaphone megaphoneButton;
+    Monster monsterButton;
     DartWader dartWaderButton;
     CircleSlider circleSlider;
     Chipmunk chipmunkButton;
@@ -72,7 +72,7 @@ public class MainPanel extends JPanel implements Runnable {
         chipmunkButton = new Chipmunk(10, 390,width,80,"Chipm.");
         russianMicButton = new RussianMic(width+20, 390, width, height,"RMic.");
         radioButton = new Radio(2*width+30, 390,width,height,"Radio");
-        megaphoneButton = new Megaphone(3*width+40, 390,width,height,"MPhone.");
+        monsterButton = new Monster(3*width+40, 390,width,height,"Monster");
         defaultsButton = new Deafult(4*width+50, 390 ,width, height, "Default");
         customButton = new Custom(0,10,MAIN_WIDTH-1,40,"Custom Pitch");
     }
@@ -105,6 +105,7 @@ public class MainPanel extends JPanel implements Runnable {
         }
     }
 
+    private Boolean echo=false;
     private Boolean pitch =false;
     private Boolean distortion=false;
 
@@ -118,13 +119,16 @@ public class MainPanel extends JPanel implements Runnable {
             pitch=false;
         }
 
-        if(distortion){
-            for(int i=0;i<microphone.data.length;i++){
-                microphone.data[i]=(byte)(microphone.data[i]*1.4);
+        if(distortion) {
+            for (int i = 3; i < microphone.data.length; i++) {
+                microphone.data[i] = (byte) (microphone.data[i] * 1.4);
             }
 
         }
     }
+
+
+
 
     public void paint(Graphics g){
         image = createImage(getWidth(),getHeight());
@@ -147,7 +151,7 @@ public class MainPanel extends JPanel implements Runnable {
         chipmunkButton.draw(g);
         russianMicButton.draw(g);
         radioButton.draw(g);
-        megaphoneButton.draw(g);
+        monsterButton.draw(g);
         defaultsButton.draw(g);
     }
 
@@ -172,8 +176,8 @@ public class MainPanel extends JPanel implements Runnable {
             if(russianMicButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,49100,16,2,4,44100,false);pitch=true;distortion=true;}
             radioButton.mousePressed(mouseEvent);
             if(radioButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,40000,16,2,4,44100,false);pitch=true;distortion=true;}
-            megaphoneButton.mousePressed(mouseEvent);
-            if(megaphoneButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,44100,16,2,4,44100,false);pitch=true;distortion=false;}
+            monsterButton.mousePressed(mouseEvent);
+            if(monsterButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,74100,16,2,4,44100,false);pitch=true;distortion=true;}
             defaultsButton.mousePressed(mouseEvent);
             if(defaultsButton.pressed){microphone.setAudioFormat(AudioFormat.Encoding.PCM_SIGNED,44100,16,2,4,44100,false);pitch=true;distortion=false;}
             circleSlider.mousePressed(mouseEvent);
